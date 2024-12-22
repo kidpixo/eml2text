@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-# © 2023 Erik Ben Heckman (https://github.com/heckman) <erik@heckman.ca>
-# License: MIT
+# Copyright 2023 Erik Ben Heckman <erik@heckman.ca>
+# https://git.heckman.ca/eml2text   SPDX-License-Identifier: MIT
 
-# eml2text
-#
-# v0.2
-#
-# takes the name of an eml file as its only argument
-# and prints the body of the email as plain-text to stdout
+
+#  eml2text  v0.2
+
+
+# Generate plain-text from an eml email file
+
+# Takes the name of an eml file as its only argument
+# and prints the body of the email as plain-text to stdout.
 
 from email import policy,  message_from_file
 from sys import argv, exit, stderr
