@@ -8,10 +8,32 @@ Python 3.10+.
 
 ## Installation
 
-Install via pipx:
+This project has zero external dependencies — only Python standard library. Any of these methods works:
+
+### pipx (recommended)
+
+Installs in an isolated environment and exposes the `eml2text` command:
 
 ```
 pipx install .
+```
+
+### pip
+
+Equivalent here since there are no dependencies to isolate:
+
+```
+pip install .
+```
+
+Then use `eml2text` from the command line.
+
+### Standalone file
+
+Download [`eml2text.py`](eml2text.py) — a single self-contained Python file. Run it directly:
+
+```
+python eml2text.py email_file.eml
 ```
 
 ## Usage

@@ -5,27 +5,11 @@
 
 """eml2text - Extract plain text from an EML email file.
 
-Reads an EML (RFC 5322) email file and writes the message headers
-(From, To, Date, Subject) and plain-text body to stdout or a file.
+Standalone single-file version. Run directly:
 
-Usage:
-    eml2text <EML_FILE>
-    eml2text --markdown <EML_FILE>
-    eml2text --html <EML_FILE>
-    eml2text --output result.html --html <EML_FILE>
-    eml2text --help
-
-Options:
-  -m, --markdown    Format output as markdown (bold headers).
-  -h, --html        Format output as HTML.
-  -o FILE, --output FILE   Write output to FILE instead of stdout.
-  --help            Show this help message and exit.
-
-Examples:
-  eml2text email.eml
-  eml2text --markdown email.eml
-  eml2text --html email.eml
-  eml2text -m -o out.md email.eml
+    python eml2text.py email_file.eml
+    python eml2text.py --progress emails/
+    python eml2text.py --markdown --output out.md email.eml
 """
 
 import re
@@ -238,12 +222,12 @@ def main():
     try:
         opts, args = getopt.getopt(argv[1:], "hpmo:", ["help", "progress", "markdown", "html", "output="])
     except getopt.GetoptError:
-        print(F"Usage: eml2text [--progress] [--markdown] [--html] [--output FILE|DIR] <EML_FILE|DIR>", file=stderr)
+        print(F"Usage: python eml2text.py [--progress] [--markdown] [--html] [--output FILE|DIR] <EML_FILE|DIR>", file=stderr)
         exit(1)
 
     for opt, arg in opts:
         if opt in ("--help",):
-            print(F"""Usage: eml2text [--progress] [--markdown] [--html] [--output FILE|DIR] <EML_FILE|DIR>
+            print(F"""Usage: python eml2text.py [--progress] [--markdown] [--html] [--output FILE|DIR] <EML_FILE|DIR>
 
 Options:
   -p, --progress    Show a progress bar when processing multiple files.
@@ -254,12 +238,12 @@ Options:
   --help            Show this help message and exit.
 
 Examples:
-  eml2text email.eml
-  eml2text --markdown email.eml
-  eml2text --html email.eml
-  eml2text -m -o out.md email.eml
-  eml2text --output out/ emails/
-  eml2text --progress emails/""")
+  python eml2text.py email.eml
+  python eml2text.py --markdown email.eml
+  python eml2text.py --html email.eml
+  python eml2text.py -m -o out.md email.eml
+  python eml2text.py --output out/ emails/
+  python eml2text.py --progress emails/""")
             exit(0)
         elif opt in ("-p", "--progress"):
             progress = True
@@ -271,7 +255,7 @@ Examples:
             output_file = arg
 
     if not args:
-        print(F"Usage: eml2text [--markdown] [--html] [--output FILE|DIR] <EML_FILE|DIR>", file=stderr)
+        print(F"Usage: python eml2text.py [--progress] [--markdown] [--html] [--output FILE|DIR] <EML_FILE|DIR>", file=stderr)
         exit(1)
 
     def _open_message(path):
@@ -332,3 +316,7 @@ Examples:
         except OSError as e:
             print(f"Unable to open {input_path}", file=stderr)
             exit(1)
+
+
+if __name__ == '__main__':
+    main()
