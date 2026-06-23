@@ -1,0 +1,17 @@
+[project]
+name = "eml2text"
+version = "0.3"
+description = "A command-line tool for extracting plain text from an EML email file"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+eml2text = "eml2text.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/eml2text"]
